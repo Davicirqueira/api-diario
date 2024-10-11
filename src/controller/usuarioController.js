@@ -1,6 +1,7 @@
 import * as db from '../repository/usuarioRepository.js' 
 
 import { gerarToken } from '../utils/jwt.js';
+import { autenticar } from '../utils/jwt.js';
 
 import { Router } from "express";
 const endpoints = Router();
@@ -66,6 +67,27 @@ endpoints.post('/entrar', async (req, resp) => {
         })
         
     }
+
+})
+
+
+endpoints.get('/usuarios', autenticar, async (req, resp) => {
+
+    try {
+    
+        let registros = await db.consultarUsuario();
+
+        resp.send(registros);
+
+    } 
+    catch(err){
+        
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
 })
 
 export default endpoints;
