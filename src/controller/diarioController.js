@@ -50,6 +50,28 @@ endpoints.get('/diario', autenticar, async (req, resp) => {
 
 })
 
+//Id
+endpoints.get('/diario/:id', autenticar, async (req, resp) => {
+
+    try {
+
+        let id = req.params.id;
+
+        let registros = await db.consultarNotaPorId(id);
+
+        resp.send(registros);
+
+    }
+    catch (err) {
+
+        resp.status(400).send({
+            erro: err.message
+        })
+
+    }
+
+})
+
 endpoints.put('/diario/:id', autenticar, async (req, resp) => {
 
     try {

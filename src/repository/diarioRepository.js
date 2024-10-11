@@ -41,6 +41,31 @@ export async function consultarNota(){
 
 }
 
+//Id
+export async function consultarNotaPorId(id){
+
+    const comando = ` 
+    
+    select 
+    id_diario       idDiario,
+    dt_dia          dia,
+    ds_conteudo     conteudo,
+    id_usuario      usuario
+    from tb_diario
+    where id_diario = ?
+    
+    `;
+
+    let response = await con.query(comando, [id]);
+
+    let registros = response[0];
+
+    let nota = registros[0];
+
+    return nota;
+    
+}
+
 
 export async function alterarNota(nota, id) {
 
@@ -50,7 +75,7 @@ export async function alterarNota(nota, id) {
         set dt_dia = ?,
             ds_conteudo = ?,
             id_usuario = ?
-        where id_diario = ?;
+        where id_diario = ?
 
     `;
 
