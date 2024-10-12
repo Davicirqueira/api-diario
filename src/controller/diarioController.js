@@ -106,7 +106,7 @@ endpoints.put('/diario/:id', autenticar, async (req, resp) => {
 })
 
 
-endpoints.put('/diario/:id', autenticar, async (req, resp) => {
+endpoints.delete('/diario/:id', autenticar, async (req, resp) => {
 
     try {
 
