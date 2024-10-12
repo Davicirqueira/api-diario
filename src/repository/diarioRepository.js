@@ -106,4 +106,5 @@ export async function deletarNota(id){
     let linhasAfetadas = info.affectedRows;
 
     return linhasAfetadas;
+    
 }

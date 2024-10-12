@@ -15,7 +15,7 @@ endpoints.post('/diario', autenticar, async (req, resp) => {
 
         resp.send({
 
-            idNota: id
+            idDiario: id
 
         })
 
@@ -35,7 +35,7 @@ endpoints.get('/diario', autenticar, async (req, resp) => {
 
     try {
 
-        let idUsuario = req.user.id;
+        let idUsuario = req.user.idUsuario;
 
         let registros = await db.consultarNota(idUsuario);
 
