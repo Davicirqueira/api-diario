@@ -35,7 +35,9 @@ endpoints.get('/diario', autenticar, async (req, resp) => {
 
     try {
 
-        let registros = await db.consultarNota();
+        let idUsuario = req.user.id;
+
+        let registros = await db.consultarNota(idUsuario);
 
         resp.send(registros);
 
