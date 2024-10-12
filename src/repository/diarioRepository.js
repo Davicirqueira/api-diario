@@ -20,7 +20,7 @@ export async function inserirNota(nota){
 }
 
 
-export async function consultarNota(){
+export async function consultarNota(idUsuario){
 
     const comando = ` 
     
@@ -30,10 +30,11 @@ export async function consultarNota(){
     ds_conteudo     conteudo,
     id_usuario      usuario
     from tb_diario
+    where id_usuario = ?
     
     `;
 
-    let response = await con.query(comando);
+    let response = await con.query(comando, [idUsuario]);
 
     let registros = response[0];
 
