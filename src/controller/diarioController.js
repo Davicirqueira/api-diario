@@ -82,10 +82,14 @@ endpoints.put('/diario/:id', autenticar, async (req, resp) => {
 
         let linhasAfetadas = await db.alterarNota(nota, id);
 
-        if (linhasAfetadas == 0) {
+        if (linhasAfetadas >= 1) {
 
-            throw new Error('Nenhuma nota alterada.');
+            resp.send();
 
+        }
+        else{
+
+            resp.status(404).send({error: 'Nenhuma nota alterada.'})
         }
 
     }
@@ -108,10 +112,14 @@ endpoints.put('/diario/:id', autenticar, async (req, resp) => {
 
         let linhasAfetadas = await db.deletarNota(id);
 
-        if (linhasAfetadas == 0) {
+        if (linhasAfetadas >= 1) {
 
-            throw new Error('Nenhuma nota removida.');
+            resp.send();
 
+        }
+        else{
+
+            resp.status(404).send({error: 'Nenhuma nota removida.'})
         }
 
     }
