@@ -24,14 +24,14 @@ export async function consultarNota(idUsuario){
 
     const comando = ` 
     
-    select 
-    id_diario       idDiario,
-    dt_dia          dia,
-    ds_conteudo     conteudo,
-    id_usuario      usuario
+    select tb_diario.id_diario 		idDiario, 
+    tb_diario.dt_dia				dia, 
+    tb_diario.ds_conteudo			conteudo,
+    tb_usuario.nm_usuario			usuario
     from tb_diario
-    where id_usuario = ?
-    
+    join tb_usuario on tb_diario.id_usuario = tb_usuario.id_usuario
+    where tb_diario.id_usuario = ?;
+
     `;
 
     let response = await con.query(comando, [idUsuario]);
